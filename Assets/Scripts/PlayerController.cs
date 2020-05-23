@@ -14,7 +14,6 @@ public class PlayerController : MonoBehaviour
 
     void ReceiveMovementInput() {
         Vector3 inputDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
-        Debug.Log(inputDir);
         transform.Translate(inputDir * Time.deltaTime * movementSpeed, Space.World);
     }
 
