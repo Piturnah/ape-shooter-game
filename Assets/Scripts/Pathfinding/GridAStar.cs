@@ -5,6 +5,7 @@ using UnityEngine;
 public class GridAStar : MonoBehaviour
 {
     public LayerMask unwalkableMask;
+    public LayerMask walkableMask;
     public Vector2 gridWorldSize;
     public float nodeRadius;
     public Collider terrainMeshCollider;
@@ -34,7 +35,7 @@ public class GridAStar : MonoBehaviour
                 Vector3 rayCastWorldPoint = new Vector3(worldBottomLeft.x + (x * nodeDiameter + nodeRadius), 20, worldBottomLeft.z + (y * nodeDiameter + nodeRadius));
 
                 Ray ray = new Ray(rayCastWorldPoint, Vector3.down);
-                if (Physics.Raycast(ray, out hit, 40)) {
+                if (Physics.Raycast(ray, out hit, 40, unwalkableMask + walkableMask)) {
                     worldPoint = hit.point;
                 } else {
                     Debug.LogError("NO TERRAIN FOUND IN RAYCAST AT WORLD POS: " + rayCastWorldPoint);
@@ -46,12 +47,55 @@ public class GridAStar : MonoBehaviour
         }
     }
 
+    public int MaxSize {
+        get {
+            return gridSize * gridSize;
+        }
+    }
+
+    public List<Node> GetNeighbouringNodes(Node node) {
+        List<Node> neighbours = new List<Node>();
+
+        for (int x = -1; x <= 1; x++) {
+            for (int y = -1; y <= 1; y++) {
+                if (x == 0 && y == 0) {
+                    continue;
+                }
+                int checkX = node.gridX + x;
+                int checkY = node.gridY + y;
+
+                if (checkX >= 0 && checkX < gridSize && checkY >= 0 && checkY < gridSize) {
+                    neighbours.Add(nodeMap[checkX, checkY]);
+                }
+            }
+        }
+
+        return neighbours;
+    }
+
+    public Node NodeFromWorldPoint(Vector3 worldPosition) {
+        float percentX = Mathf.Clamp01((worldPosition.x + gridWorldSize.x / 2) / gridWorldSize.x);
+        float percentY = Mathf.Clamp01((worldPosition.z + gridWorldSize.y / 2) / gridWorldSize.y);
+
+        int x = Mathf.RoundToInt((gridSize - 1) * percentX);
+        int y = Mathf.RoundToInt((gridSize - 1) * percentY);
+
+        return nodeMap[x, y];
+    }
+
+
+    public List<Node> path;
     private void OnDrawGizmos() {
         Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 20, gridWorldSize.y));
 
         if (nodeMap != null) {
             foreach (Node node in nodeMap) {
                 Gizmos.color = (node.walkable) ? Color.white : Color.red;
+
+                if (path != null && path.Contains(node)) {
+                    Gizmos.color = Color.black;
+                }
+
                 Gizmos.DrawSphere(node.worldPosition, nodeRadius);
             }
         }
