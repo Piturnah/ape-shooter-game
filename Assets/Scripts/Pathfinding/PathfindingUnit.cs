@@ -10,7 +10,7 @@ public class PathfindingUnit : MonoBehaviour
     int targetIndex;
 
     float pathUpdateMoveThreshold;
-    float minPathUpdateTime;
+    float minPathUpdateTime = 0.5f;
 
     GridAStar grid;
 
@@ -18,6 +18,9 @@ public class PathfindingUnit : MonoBehaviour
         target = FindObjectOfType<PlayerController>().transform;
         grid = FindObjectOfType<GridAStar>();
         StartCoroutine(UpdatePath());
+
+        GetComponent<Animator>().Play("Scene");
+        pathUpdateMoveThreshold = grid.nodeRadius * 2;
     }
 
     void FindNewPath() {
@@ -56,8 +59,10 @@ public class PathfindingUnit : MonoBehaviour
     IEnumerator FollowPath() {
         Vector3 currentWaypoint = path[0];
 
+        LookAtWaypoint(currentWaypoint);
+
         while (true) {
-            if (transform.position.x == currentWaypoint.x && transform.position.y == currentWaypoint.y) {
+            if (Mathf.Abs(transform.position.x - currentWaypoint.x) <= 1 && Mathf.Abs(transform.position.z - currentWaypoint.z) <= 1) {
                 targetIndex++;
                 if (targetIndex >= path.Length) {
                     yield break;
@@ -68,6 +73,10 @@ public class PathfindingUnit : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(currentWaypoint.x, transform.position.y, currentWaypoint.z), speed * Time.deltaTime);
             yield return null;
         }
+    }
+
+    void LookAtWaypoint(Vector3 waypoint) {
+        transform.LookAt(new Vector3(waypoint.x, transform.position.y, waypoint.z));
     }
 
     private void OnDrawGizmos() {

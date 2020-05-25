@@ -16,29 +16,20 @@ public class EnemySpawningScript : MonoBehaviour
     public Vector3 zsize;
     public Vector3 distance = new Vector3(-185,0,0);
 
-    public float SpawnRate = 1f;
-    public float period = 0.1f;
-    public float timeInterval = 10f;
-    public float Decreaseovertime = 1f;
+    public float initialTimeBtwChimps = 5;
+    public float finalTimeBtwChimps = 0.2f;
+    public float timeUntilMaxChimpRate = 500;
+
+    float previousChimpSpawnTime;
 
     void Update()
     {
-        if (period > timeInterval)
-        {
-            if (numberofchimps < SpawnLimit)
-            {
-
-                SpawnEnemy();
-                numberofchimps += 1;
-                if (timeInterval > 2)
-                {
-                    timeInterval -= Decreaseovertime;
-                }
-
-            }
-            period = 0;
+        if (previousChimpSpawnTime + Mathf.Lerp(initialTimeBtwChimps, finalTimeBtwChimps, Time.time/timeUntilMaxChimpRate) < Time.time) {
+            SpawnEnemy();
+            previousChimpSpawnTime = Time.time;
+            numberofchimps++;
+            Debug.Log(Mathf.Lerp(initialTimeBtwChimps, finalTimeBtwChimps, Time.time / timeUntilMaxChimpRate));
         }
-        period += UnityEngine.Time.deltaTime * SpawnRate;
     }
 
     public void SpawnEnemy()

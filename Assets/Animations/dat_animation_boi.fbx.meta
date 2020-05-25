@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 3d312a4d27d1c4c4783989edefe57e4a
+guid: c9f11895a47addb4d89b9d71f476e9aa
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
   - first:
-      74: -623603649343465320
-    second: Scene
+      74: -1371374764819149898
+    second: bones.001|bones.001Action
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,8 +35,8 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Scene
-      takeName: Scene
+      name: bones.001|bones.001Action
+      takeName: bones.001|bones.001Action
       internalID: 0
       firstFrame: 0
       lastFrame: 10
@@ -46,7 +46,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0

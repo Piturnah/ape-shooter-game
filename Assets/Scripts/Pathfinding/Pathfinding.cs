@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class Pathfinding : MonoBehaviour
 {
@@ -80,7 +81,7 @@ public class Pathfinding : MonoBehaviour
         Vector3 directionOld = Vector3.zero;
 
         for (int i = 0; i < path.Count - 1; i++) {
-            Vector3 directionNew = (new Vector2(path[i + 1].worldPosition.x - path[i].worldPosition.x, path[i + 1].worldPosition.y - path[i].worldPosition.y)).normalized;
+            Vector3 directionNew = (new Vector2(path[i + 1].worldPosition.x - path[i].worldPosition.x, path[i + 1].worldPosition.z - path[i].worldPosition.z)).normalized;
             if (directionNew != directionOld) {
                 waypoints.Add(path[i].worldPosition);
                 directionOld = directionNew;
@@ -89,7 +90,7 @@ public class Pathfinding : MonoBehaviour
         if (path.Count > 0) {
             waypoints.Add(path[path.Count - 1].worldPosition);
         }
-        
+
         return waypoints.ToArray();
     }
 

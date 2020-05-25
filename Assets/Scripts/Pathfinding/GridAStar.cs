@@ -11,10 +11,10 @@ public class GridAStar : MonoBehaviour
     public float nodeRadius;
     public Collider terrainMeshCollider;
 
-    Node[,] nodeMap;
+    public Node[,] nodeMap;
 
     float nodeDiameter;
-    int gridSize;
+    public int gridSize;
 
     List<Node> toRemakeWalkable = new List<Node>();
 
@@ -52,7 +52,7 @@ public class GridAStar : MonoBehaviour
                 Vector3 rayCastWorldPoint = new Vector3(worldBottomLeft.x + (x * nodeDiameter + nodeRadius), 20, worldBottomLeft.z + (y * nodeDiameter + nodeRadius));
 
                 Ray ray = new Ray(rayCastWorldPoint, Vector3.down);
-                if (Physics.Raycast(ray, out hit, 40, walkableMask)) {
+                if (Physics.Raycast(ray, out hit, 40, walkableMask + unwalkableMask)) {
                     worldPoint = hit.point;
                 } else {
                     Debug.LogError("NO TERRAIN FOUND IN RAYCAST AT WORLD POS: " + rayCastWorldPoint);
