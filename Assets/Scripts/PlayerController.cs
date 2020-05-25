@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,13 +9,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float movementSpeed;
 
     private void Update() {
-        ReceiveRotationInput();
+        //ReceiveRotationInput();
         ReceiveMovementInput();
     }
 
     void ReceiveMovementInput() {
         Vector3 inputDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
-        transform.Translate(inputDir * Time.deltaTime * movementSpeed, Space.World);
+        transform.Translate(inputDir * Time.deltaTime * movementSpeed, Space.Self);
     }
 
     void ReceiveRotationInput() {

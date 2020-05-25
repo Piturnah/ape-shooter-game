@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GridAStar : MonoBehaviour
 {
+    public bool displayGridGizmos;
     public LayerMask unwalkableMask;
     public LayerMask walkableMask;
     public Vector2 gridWorldSize;
@@ -15,11 +16,27 @@ public class GridAStar : MonoBehaviour
     float nodeDiameter;
     int gridSize;
 
-    private void Start() {
+    List<Node> toRemakeWalkable = new List<Node>();
+
+    private void Awake() {
         nodeDiameter = nodeRadius * 2;
         gridSize = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
 
         CreateGrid();
+    }
+
+    public void MakeUnwalkable(Vector3 worldPos) {
+        Node node = NodeFromWorldPoint(worldPos);
+        if (node.walkable) {
+            NodeFromWorldPoint(worldPos).walkable = false;
+            toRemakeWalkable.Add(node);
+        }
+    }
+
+    private void LateUpdate() {
+        foreach (Node n in toRemakeWalkable) {
+            n.walkable = true;
+        }
     }
 
     void CreateGrid() {
@@ -83,19 +100,12 @@ public class GridAStar : MonoBehaviour
         return nodeMap[x, y];
     }
 
-
-    public List<Node> path;
     private void OnDrawGizmos() {
         Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 20, gridWorldSize.y));
 
-        if (nodeMap != null) {
+        if (nodeMap != null && displayGridGizmos) {
             foreach (Node node in nodeMap) {
                 Gizmos.color = (node.walkable) ? Color.white : Color.red;
-
-                if (path != null && path.Contains(node)) {
-                    Gizmos.color = Color.black;
-                }
-
                 Gizmos.DrawSphere(node.worldPosition, nodeRadius);
             }
         }

@@ -4,14 +4,25 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    Vector3 offsetToPlayer;
-    [SerializeField] Transform playerTransform;
+    public float mouseSensitivity;
 
-    private void Start() {
-        offsetToPlayer = transform.position - playerTransform.position;
+    private void Awake() {
+        LockCursor();
     }
 
-    private void LateUpdate() {
-        transform.position = playerTransform.position + offsetToPlayer;
+    void LockCursor() {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    private void Update() {
+        CameraRotation();
+    }
+
+    void CameraRotation() {
+        float mouseX = Input.GetAxisRaw("Mouse X") * mouseSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSensitivity * Time.deltaTime;
+
+        transform.Rotate(-Vector3.right * mouseY, Space.Self);
+        transform.parent.Rotate(Vector3.up * mouseX, Space.Self);
     }
 }
