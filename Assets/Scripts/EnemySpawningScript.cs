@@ -7,6 +7,8 @@ public class EnemySpawningScript : MonoBehaviour
 
     public GameObject EnemyPrefab;
     public GameObject Spawnto;
+    public int numberofchimps = 0;
+    public int SpawnLimit = 100;
 
     //This is so it doesn't need to use two different objects to spawn on both sides
     public Vector3 center;
@@ -23,12 +25,18 @@ public class EnemySpawningScript : MonoBehaviour
     {
         if (period > timeInterval)
         {
-            SpawnEnemy();
-            period = 0;
-            if (timeInterval > 2)
+            if (numberofchimps < SpawnLimit)
             {
-                timeInterval -= Decreaseovertime;
+
+                SpawnEnemy();
+                numberofchimps += 1;
+                if (timeInterval > 2)
+                {
+                    timeInterval -= Decreaseovertime;
+                }
+
             }
+            period = 0;
         }
         period += UnityEngine.Time.deltaTime * SpawnRate;
     }
