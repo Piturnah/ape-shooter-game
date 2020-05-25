@@ -130,7 +130,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e0e8f74ae97ee40812a7875e1f27ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
   timeBetweenFiring: 0.5
   firingAnimName: katana_swipe
 --- !u!95 &8296172668184355905
@@ -164,6 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c443640a3e308a46802b36f3129693c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeBetweenFiring: 0
+  firingAnimName: 
 --- !u!1 &5197510991304882252
 GameObject:
   m_ObjectHideFlags: 0

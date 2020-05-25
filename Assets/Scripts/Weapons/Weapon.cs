@@ -5,7 +5,7 @@ using UnityEngine.Animations;
 
 public class Weapon : MonoBehaviour
 {
-    public Animator anim;
+    Animator anim;
     public float timeBetweenFiring;
     public string firingAnimName;
 
@@ -24,7 +24,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    void FireWeapon() {
+    public virtual void FireWeapon() {
         anim.Play(firingAnimName);
     }
 }
