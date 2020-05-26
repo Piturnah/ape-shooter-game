@@ -5,10 +5,10 @@ using UnityEngine;
 public class EnemySpawningScript : MonoBehaviour
 {
 
-    public GameObject EnemyPrefab;
-    public GameObject Spawnto;
-    public int numberofchimps = 0;
-    public int SpawnLimit = 100;
+    public GameObject enemyPrefab;
+    public GameObject spawnTo;
+    public int numberOfChimps = 0;
+    public int spawnLimit = 100;
 
     //This is so it doesn't need to use two different objects to spawn on both sides
     public Vector3 center;
@@ -27,7 +27,7 @@ public class EnemySpawningScript : MonoBehaviour
         if (previousChimpSpawnTime + Mathf.Lerp(initialTimeBtwChimps, finalTimeBtwChimps, Time.time/timeUntilMaxChimpRate) < Time.time) {
             SpawnEnemy();
             previousChimpSpawnTime = Time.time;
-            numberofchimps++;
+            numberOfChimps++;
             Debug.Log(Mathf.Lerp(initialTimeBtwChimps, finalTimeBtwChimps, Time.time / timeUntilMaxChimpRate));
         }
     }
@@ -37,11 +37,11 @@ public class EnemySpawningScript : MonoBehaviour
         Vector3 pos1 = transform.localPosition + center + new Vector3(Random.Range(-xsize.x / 2, xsize.x / 2), 10, Random.Range(-zsize.z / 2, zsize.z / 2));
         Vector3 pos2 = transform.localPosition + center + new Vector3((Random.Range(-xsize.x / 2, xsize.x / 2) + distance.x), 10, Random.Range(-zsize.z / 2, zsize.z / 2));
 
-        EnemyPrefab = Instantiate(EnemyPrefab, pos1, Quaternion.identity);
-        EnemyPrefab.transform.SetParent(Spawnto.transform);
+        GameObject newChimp = Instantiate(enemyPrefab, pos1, Quaternion.identity);
+        newChimp.transform.SetParent(spawnTo.transform);
 
-        EnemyPrefab = Instantiate(EnemyPrefab, pos2, Quaternion.identity);
-        EnemyPrefab.transform.SetParent(Spawnto.transform);
+        newChimp = Instantiate(enemyPrefab, pos2, Quaternion.identity);
+        newChimp.transform.SetParent(spawnTo.transform);
     }
 
     private void OnDrawGizmosSelected()

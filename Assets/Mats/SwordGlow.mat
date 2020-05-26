@@ -100,7 +100,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 0, b: 0, a: 1}
-    - _EmissionColor: {r: 5.3403134, g: 1.939642, b: 1.939642, a: 0}
+    - _EmissionColor: {r: 5.3403134, g: 1.9571829, b: 1.9571829, a: 0}
     - _FixedNormal: {r: 0, g: 0, b: 1, a: 1}
     - _OverlayColor: {r: 0, g: 0, b: 0, a: 0}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
