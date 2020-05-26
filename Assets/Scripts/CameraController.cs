@@ -27,5 +27,7 @@ public class CameraController : MonoBehaviour
 
         transform.Rotate(-Vector3.right * mouseY, Space.Self);
         transform.parent.Rotate(Vector3.up * mouseX, Space.Self);
+
+        //transform.parent.rotation = Quaternion.Euler(Mathf.Clamp(-90, 90, transform.parent.eulerAngles.x), transform.parent.eulerAngles.y, transform.parent.eulerAngles.z);
     }
 }
