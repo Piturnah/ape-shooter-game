@@ -15,7 +15,10 @@ public class CameraController : MonoBehaviour
     }
 
     private void Update() {
-        CameraRotation();
+        if (!FindObjectOfType<PlayerController>().dead) {
+            CameraRotation();
+        }
+        
     }
 
     void CameraRotation() {

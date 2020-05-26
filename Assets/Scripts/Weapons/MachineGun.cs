@@ -14,7 +14,7 @@ public class MachineGun : MonoBehaviour
             nozzel.GetComponent<MeshRenderer>().enabled = false;
         }
         
-        if (Input.GetKey(KeyCode.Mouse0) && Time.time > prevShotTime + timeBtwShots) {
+        if (Input.GetKey(KeyCode.Mouse0) && Time.time > prevShotTime + timeBtwShots && !FindObjectOfType<PlayerController>().dead) {
             prevShotTime = Time.time;
             nozzel.GetComponent<MeshRenderer>().enabled = true;
             Fire();

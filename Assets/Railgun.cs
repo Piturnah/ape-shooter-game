@@ -15,6 +15,6 @@ public class Railgun : MonoBehaviour
     public GameObject lazerBeam;
 
     private void Update() {
-        lazerBeam.SetActive(Input.GetKey(KeyCode.Mouse0));
+        lazerBeam.SetActive(Input.GetKey(KeyCode.Mouse0) && !FindObjectOfType<PlayerController>().dead);
     }
 }

@@ -8,14 +8,42 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask floorLayers;
     [SerializeField] float movementSpeed;
 
+    public int maxHealth;
+    public int health;
+    public int damageFromChimp;
+    float attackCooldownTime = 0.5f;
+    float lastAttackTime;
+
+    public bool dead;
+
+    public GameObject deadScreen;
+
+    private void Start() {
+        health = maxHealth;
+    }
+
     private void Update() {
-        //ReceiveRotationInput();
-        ReceiveMovementInput();
+        if (health <= 0) {
+            dead = true;
+            deadScreen.SetActive(true);
+        }
+
+        if (!dead) {
+            ReceiveMovementInput();
+        }
     }
 
     void ReceiveMovementInput() {
         Vector3 inputDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
         transform.Translate(inputDir * Time.deltaTime * movementSpeed, Space.Self);
+    }
+
+    private void OnTriggerStay(Collider other) {
+        if (other.tag == "Chimp" && Time.time > lastAttackTime + attackCooldownTime) {
+            Debug.Log("Yes");
+            lastAttackTime = Time.time;
+            health -= damageFromChimp;
+        }
     }
 
     void ReceiveRotationInput() {

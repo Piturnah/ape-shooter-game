@@ -27,7 +27,7 @@ public class Weapon : MonoBehaviour
     }
 
     private void Update() {
-        if (Input.GetKey(KeyCode.Mouse0)) {
+        if (Input.GetKey(KeyCode.Mouse0) && !FindObjectOfType<PlayerController>().dead) {
             if (Time.time > lastShotTime + timeBetweenFiring) {
                 lastShotTime = Time.time;
                 FireWeapon();

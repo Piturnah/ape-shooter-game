@@ -83,7 +83,7 @@ public class PathfindingUnit : MonoBehaviour
         if (path != null) {
             for (int i = targetIndex; i < path.Length; i++) {
                 Gizmos.color = Color.black;
-                Gizmos.DrawSphere(path[i], FindObjectOfType<GridAStar>().nodeRadius);
+                Gizmos.DrawWireSphere(path[i], FindObjectOfType<GridAStar>().nodeRadius);
 
                 if (i == targetIndex) {
                     Gizmos.DrawLine(transform.position, path[i]);
