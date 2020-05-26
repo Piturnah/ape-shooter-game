@@ -28,7 +28,7 @@ public class MachineGun : MonoBehaviour
                 FindObjectOfType<ChimpController>().DeadChimp(hit.transform.gameObject);
             }
         }
-        Bullet newBullet = Instantiate(bullet, nozzel.transform.position, Quaternion.Euler(90, 0, 0)).GetComponent<Bullet>();
-        newBullet.direction = nozzel.transform.parent.forward;
+        Bullet newBullet = Instantiate(bullet, nozzel.transform.position, nozzel.transform.rotation).GetComponent<Bullet>();
+        newBullet.direction = nozzel.transform.forward;
     }
 }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 989554822043635187}
   - component: {fileID: 989554822043635199}
   - component: {fileID: 8936763408063774798}
+  - component: {fileID: -4821981882951551843}
   m_Layer: 12
   m_Name: Sample chimp
   m_TagString: Chimp
@@ -126,6 +127,42 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &-4821981882951551843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989554822043635186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 120e5e1dee59b484fac1d797dbe6c6fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apeSounds:
+  - name: 1
+    clip: {fileID: 8300000, guid: f133e135bc9d8f34e9bfc27300181451, type: 3}
+    source: {fileID: 0}
+  - name: 2
+    clip: {fileID: 8300000, guid: bbf041bfec3b50a40b377d0e30e6ae01, type: 3}
+    source: {fileID: 0}
+  - name: 3
+    clip: {fileID: 8300000, guid: 44b9cf8c945a8d049b433224a9007058, type: 3}
+    source: {fileID: 0}
+  - name: 4
+    clip: {fileID: 8300000, guid: d7610d9b35c3b15428504a71ff6a5312, type: 3}
+    source: {fileID: 0}
+  - name: 5
+    clip: {fileID: 8300000, guid: bda74335317eb1b4a96338f9a2962e65, type: 3}
+    source: {fileID: 0}
+  - name: 6
+    clip: {fileID: 8300000, guid: a3492a2a560911542b9d668d13cf9f9e, type: 3}
+    source: {fileID: 0}
+  - name: 7
+    clip: {fileID: 8300000, guid: b4e68c0e5d552064aa6e8517ef6e828a, type: 3}
+    source: {fileID: 0}
+  soundDelayMin: 10
+  soundDDelayMax: 15
 --- !u!95 &2403050921677961180
 Animator:
   serializedVersion: 3

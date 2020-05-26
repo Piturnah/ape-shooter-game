@@ -1415,6 +1415,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1485288238882816450}
     m_Modifications:
+    - target: {fileID: -8607577194732488581, guid: 2e052f8a7ace93845b0d09dadc8a562a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 719f8d894e1dd2944b0e2a19275dde61, type: 2}
+    - target: {fileID: -7852169077833887826, guid: 2e052f8a7ace93845b0d09dadc8a562a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 719f8d894e1dd2944b0e2a19275dde61, type: 2}
     - target: {fileID: -4216859302048453862, guid: 2e052f8a7ace93845b0d09dadc8a562a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1475,6 +1485,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Circular Mahine Gun
       objectReference: {fileID: 0}
+    - target: {fileID: 6104771906896339130, guid: 2e052f8a7ace93845b0d09dadc8a562a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 719f8d894e1dd2944b0e2a19275dde61, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e052f8a7ace93845b0d09dadc8a562a, type: 3}
 --- !u!4 &8388050457382929433 stripped
@@ -1565,6 +1580,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: c255390537214314daf5c29b057e6a8d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 719f8d894e1dd2944b0e2a19275dde61, type: 2}
     - target: {fileID: -927199367670048503, guid: c255390537214314daf5c29b057e6a8d,
         type: 3}
       propertyPath: m_Name
